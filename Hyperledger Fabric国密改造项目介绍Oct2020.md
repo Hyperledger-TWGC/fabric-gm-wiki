@@ -118,6 +118,46 @@ Fabric国密改造项目是由Hyperledger TWGC发起执行的开源项目，需�
 联系方式
 -------------
 - [加入TWGC Github组织, 给国密项目做出代码贡献](https://github.com/Hyperledger-TWGC) 
-- 国密支持开发微信群：微信联络David Liu（davidkhala），Scott Long（hncslwx）进群。
+- 国密支持开发微信群：微信联络David Liu(davidkhala)，Scott Long(hncslwx)进群。
 - [TWGC在Hyperledger的联系渠道](https://wiki.hyperledger.org/display/TWGC/Technical+Working+Group+China)
 - [参加国密改造周例会](https://github.com/Hyperledger-TWGC/fabric-gm-wiki/wiki/%E6%AF%8F%E5%91%A8%E4%BE%8B%E4%BC%9A%E4%BF%A1%E6%81%AF)
+
+### 参考链接
+-------------
+北京大学信息安全实验室 GMSSL 系列
+https://github.com/Hyperledger-TWGC/pku-gm
+
+中国网安 CCS-GM 系列
+https://github.com/Hyperledger-TWGC/ccs-gm
+
+苏州同济区块链研究院 tjfoc-gm
+https://github.com/Hyperledger-TWGC/tjfoc-gm
+
+java-gm
+https://github.com/Hyperledger-TWGC/java-gm
+
+node-gm
+https://github.com/Hyperledger-TWGC/node-gm
+
+TWGC对于《金融分布式账本技术安全规范》的解析（beta版本）
+https://docs.qq.com/doc/DV1VMenFiQXBpeFZK
+
+向Fabric社区提交了有关bccsp的改造方案的RFC文档
+https://github.com/hyperledger/fabric-rfcs/pull/34
+
+TWGC Github组织, 给国密项目做出代码贡献
+https://github.com/Hyperledger-TWGC
+
+TWGC在Hyperledger的联系渠道 
+https://wiki.hyperledger.org/display/TWGC/Technical+Working+Group+China
+
+参加国密改造周例会
+https://github.com/Hyperledger-TWGC/fabric-gm-wiki/wiki/%E6%AF%8F%E5%91%A8%E4%BE%8B%E4%BC%9A%E4%BF%A1%E6%81%AF
+
+### 鸣谢
+-------------
+David Liu（https://github.com/davidkhala）
+
+Xiao hui （https://github.com/xiaohui249）
+
+Sam Yuan（https://github.com/SamYuan1990）
