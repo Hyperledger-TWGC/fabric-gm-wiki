@@ -156,8 +156,8 @@ https://github.com/Hyperledger-TWGC/fabric-gm-wiki/wiki/%E6%AF%8F%E5%91%A8%E4%BE
 
 ### 鸣谢
 -------------
-David Liu（https://github.com/davidkhala）
+David Liu: https://github.com/davidkhala
 
-Xiao hui （https://github.com/xiaohui249）
+Xiao hui: https://github.com/xiaohui249
 
-Sam Yuan（https://github.com/SamYuan1990）
+Sam Yuan: https://github.com/SamYuan1990
