@@ -13,11 +13,11 @@
 
 |  SM2功能   | 支持范围  | 
 |  ----  | ----  |
-| Generate KeyPair  | `是|否` |
-| Sign  | `是|否` |
-| Verify | `是|否` |
-| PEM格式导出 | `私钥|公钥|CSR|证书`|
-| PEM格式导入 | `私钥|公钥|CSR|证书` |
+| Generate KeyPair  | `是/否` |
+| Sign  | `是/否` |
+| Verify | `是/否` |
+| PEM格式导出 | `私钥/公钥/CSR/证书`|
+| PEM格式导入 | `私钥/公钥/CSR/证书` |
 | PEM文件加密 | RFC5958 |  
 
 |  SM4功能   | 支持范围  | 
@@ -31,14 +31,20 @@
 
 |  SM3功能   | 支持范围  | 
 |  ----  | ----  |
-| 当前语言Hash接口兼容 | `是|否` |
+| 当前语言Hash接口兼容 | `是/否` |
 
-## 注解
+## Terminology 术语
 - SM2: 国密椭圆曲线算法库
 - SM3: 国密hash算法库
 - SM4: 国密分组密码算法库
 
 ## How to Contribute 贡献须知
+We welcome contributions to Hyperledger in many forms, and there's always plenty to do!
 
-## License
+Please visit the [contributors guide](CONTRIBUTING.md) in the
+docs to learn how to make contributions to this exciting project.
+
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
+## License 许可证
 Hyperledger Project source code files are made available under the Apache License, Version 2.0 (Apache-2.0), located in the [LICENSE](LICENSE) file.
