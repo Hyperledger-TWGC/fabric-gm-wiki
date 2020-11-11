@@ -13,7 +13,7 @@
 
 |  SM2功能   | 支持范围  | 
 |  ----  | ----  |
-| Generate Key  | `是|否` |
+| Generate KeyPair  | `是|否` |
 | Sign  | `是|否` |
 | Verify | `是|否` |
 | PEM格式导出 | `私钥|公钥|CSR|证书`|
@@ -26,6 +26,7 @@
 | Encrypt, Decrypt |  |
 | PEM格式导出 |   |
 | PEM文件加密 | golang: `x509.EncryptPEMBlock` |
+| 分组模式 | ECB/CBC/CFB/OFB/CTR |
 
 
 |  SM3功能   | 支持范围  | 
@@ -36,6 +37,8 @@
 - SM2: 国密椭圆曲线算法库
 - SM3: 国密hash算法库
 - SM4: 国密分组密码算法库
+
+## How to Contribute 贡献须知
 
 ## License
 Hyperledger Project source code files are made available under the Apache License, Version 2.0 (Apache-2.0), located in the [LICENSE](LICENSE) file.
