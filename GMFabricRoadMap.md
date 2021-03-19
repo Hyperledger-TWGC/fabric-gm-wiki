@@ -155,18 +155,25 @@ golang开发库：
 
 ​	现在方案请参考[Fabric2.0.0国密改造代码分析](https://github.com/Hyperledger-TWGC/fabric-gm-wiki/blob/master/%E7%8E%B0%E6%9C%89%E6%96%B9%E6%A1%88/Fabric2.0.0%E5%9B%BD%E5%AF%86%E6%94%B9%E9%80%A0%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90.pdf)
 
-​	使用最新Fabric2.2.0 LTS版本进行“硬”方式先进行改造:
-​	1、支持国密算法
+使用最新Fabric2.2.0 LTS版本进行“硬”方式先进行改造:
 
-​	2、支持x509国密算法证书
+- 支持国密算法
 
-​	3、支持国密SSL/TLS 双证书模式(待定)
 
-​	4、支持SDF改造(待定)
+- 支持x509国密算法证书
 
-​	5、暂时不考虑兼容，第二阶段进行
+- 
+  支持国密SSL/TLS 双证书模式(待定)
 
-​	6、”硬改“方案进行cli级别测试覆盖
+
+- 支持SDF改造(待定)
+
+
+- 暂时不考虑兼容，第二阶段进行
+
+
+- ”硬改“方案进行cli级别测试覆盖
+
 
 
 
@@ -175,7 +182,8 @@ golang开发库：
 ​	我们会遵从测试驱动开发的理念来进行fabric本体的国密改造。
 ​	因此我们会首先生成国密的测试案例，之后再将测试案例全部通过。
 
-### 1、动态生成测试数据
+### 1 动态生成测试数据
+
 
 目前Fabric测试的代码中，所有的测试用到的加密学有关证书均为Hard Code的代码或文件，基于ECDSA，在现有基础上为了使得测试案例覆盖国密，我们需要将这部分Hard Code的代码或文件调整为动态生成。
 实现在每个测试集中生成临时文件的案例，范围Fabric所有测试集合。（单元测试和集成测试）
@@ -189,41 +197,52 @@ golang开发库：
 
   
 
-### 2、hash 下沉
+### 2 hash 下沉
 
 为了更好的支持国密以及移除Fabric自身代码中的TODO item，我们正在将bccsp以及Fabric设计签名的部分从当前逻辑：
+
+hash下沉涉及两部分：
+
+- 将hash256()再次封装
+
+  将hash256()封装在新加hash()方法中，然后Fabric业务代码使用hash256()将替换成hash(), 最好在hash()根据需要进行不同sha256\sm3\sha512替换
+
 ```
-摘要 = 计算hash （正文）
+摘要 = hash（正文）
 签名（摘要）
 ```
-替换为
-```
-新接口（正文）
 
+目前 David已经提供了部分实现，[参考](
+https://github.com/Hyperledger-TWGC/fabric/pull/1), 我们正在招募志愿者协助实现这个改动。
+
+- 国密签名特殊性
+
+
+目前fabric中签名sign(hash)入参是hash值，但是国密签名需要在签名sign(data)在sign方法中再进行hash计算，为了保持一致性，需要将现在fabric中sign(hash)改为sign(data)
+
+```
 func 新接口（正文）{
     摘要 = sha256（正文）
-    return 签名（摘要）
+    return ecdsa.sign（摘要）
 }
-```
-参考国密概要逻辑：
-```
-新接口（正文）
-
 func 新接口（正文）{
     摘要 = sm3 （正文）
     return sm2.sign（摘要）
 }
 ```
-目前 David已经提供了部分实现，[参考](
-https://github.com/Hyperledger-TWGC/fabric/pull/1), 我们正在招募志愿者协助实现这个改动。
+
+
+针对上面问题未来还有一个解决方法：fabric下bccsp会结构回进行调整，bccsp提供算法密码服务提供者使用rpc进行整体替换，进而间接解决了上述问题
 
 
 
-### 3、国密适配
+### 3 国密适配
 
 ​	在完成了国密测试集的改造（或者说对测试集进行国密改造）与接口改造工作后。我们就需要进行国密版本的bccsp实现以通过所有的国密测试场景。完成测试驱动开发的过程。
 
-#### 3.1、BCCSP改造
+#### 3.1 BCCSP改造
+
+- 现阶段改造目标
 
 目前BCCSP现有支持模式SW和PKCS11， 国密改造计划支持SW对应的国密算法GMSW模式：对接三个不同密码基础库(甚至更多), 支持PKCS11对应国密标准SDF接口。
 
@@ -243,9 +262,22 @@ BCCSP {
 
 ​		SDF将使用[三未信安密码机产品SDK](https://github.com/Hyperledger-TWGC/sansec-sdk)进行适配调试
 
+
+
+
+- 长期目标
+
+  针对现在设计不足，未来将会使用rpc方案，将整个替换BCCSP
+
 ​		GMSW对接不同国密算法基础库方式：rpc（待定） 
-
-
+```
+rpc {
+	bccspa:
+	bccspb:
+	bccspc:
+	....
+}
+```
 
 #### 3.2、有关TLS双证书
 
@@ -266,7 +298,7 @@ BCCSP {
 
 ​	SDF参考规范GMT 0018-2012 密码设备应用接口规范 
 
-​	三未信安密码机产品SDK   // 不能放私有库？
+​	三未信安密码机产品SDK   //自己实现sdk中不能使用私有库源码，可以放so
 
 ​	实现方式：GO SDF SDK  --> C SDK  //GO SDF SDK新建仓库
 
@@ -276,11 +308,9 @@ BCCSP {
 
 
 
-### 5、import适配
+### 5、import适配不同算法库应用
 
-
-
-
+将会使用rpc方案进行改造实现
 
 
 
@@ -335,7 +365,7 @@ https://mvnrepository.com/artifact/org.fisco-bcos/netty-sm-ssl-context
 
 ## Node-SDK
 
-待定，参考https://github.com/Hyperledger-TWGC/node-gm
+待定，参考基础https://github.com/Hyperledger-TWGC/node-gm
 
 
 
@@ -344,8 +374,6 @@ https://mvnrepository.com/artifact/org.fisco-bcos/netty-sm-ssl-context
 # Fabric-CA
 
 ​		暂定针对某个版本“硬改”
-
-
 
 关于https国密支持：
 
@@ -368,4 +396,3 @@ Paul，Jay：提PR：动态生成test data
 
 https://github.com/Hyperledger-TWGC/fabric-gm-wiki/wiki/12%E6%9C%8804%E6%97%A5%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95
 fabric本体改造路线：哈希下沉，bccsp，test
-
