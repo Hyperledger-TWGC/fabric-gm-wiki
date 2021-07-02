@@ -108,9 +108,8 @@ Fabric国密改造项目是由Hyperledger TWGC发起执行的开源项目，需�
 ## 其他
 
 ### Global Forum: 
-  - 主题: TWGC国密改造小组的旅程故事
+  - 主题: [TWGC国密改造小组的旅程故事](https://github.com/Hyperledger-TWGC/fabric-gm-wiki/blob/master/%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95/A%20journey%20with%20the%20TWGC%20CryptoGraphy%20Team%20-%20David%20Liu%2C%20Oracle.pdf)
   - 介绍: TWGC 国密改造小组距成立已经近一年的时间了，在这三十分钟时间里，David会带着大家回顾国密组从想法，构思，讨论提案到如今多达12个TWGC国密相关代码仓库的奇妙旅程。立足现在，放眼未来，国密组的长期发展和规划将基于开源社区的协作共建，我们总是有很多未知亟待探索和实现。
-  - 主讲人: David Liu, Oracle
 
 ### tls1.3（https://tools.ietf.org/html/rfc8998）
 - 由于TLS1.3协议设计主要遵循了精简化的原则，整个协议目前变得非常清爽、简单，密钥交换只有两个选择（ECDHE、DHE），对称密码算法只有（AES128、AES256、CHACHA20），加密模式只有（GCM、CCM、POLY1305），目前已经有一些文章关于这块儿写的很详细了：譬如 https://www.oschina.net/translate/rfc-8446-aka-tls-1-3 以及 https://www.jianshu.com/p/8c65c0f562f2 如果想深入看的话直接看RFC会是比较好的选择 https://tools.ietf.org/html/rfc8446 https://tools.ietf.org/html/rfc5246
