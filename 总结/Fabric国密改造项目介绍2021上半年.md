@@ -73,8 +73,12 @@
 有关GRPC通讯改造，经过实践可以用于fabric国密改造，目前还处于开发状态。
 有关net-go的通讯改造，国密版可以用fabric-ca国密改造。已经完成并用于fabric-ca的参考实现中。
 
-## Fabric，Fabric-CA改造
-Fabric-CA改造的参考实现已经完成并开源在社区。
+## Fabric-CA改造
+Fabric-CA目前使用"硬改"方案改造已经完成，使用了[ccs-gm](https://github.com/Hyperledger-TWGC/ccs-gm)和[net-go-gm基础库](https://github.com/Hyperledger-TWGC/net-go-gm)。实现功能和特点如下：
+
+- 支持国密算法，能够生成基于国密算法x509格式证书
+- API调用支持基于国密算法https通讯
+- 改造非“侵入式”，API保持与原有官方使用方式高度一致
 
 ## 下一步工作计划
 我们整理了国密组整体路线图，接下来会在进一步完善国密基础库的基础上进行开源国密改造工作，以推动RFC在社区的工作进度。欢迎大家踊跃贡献。
